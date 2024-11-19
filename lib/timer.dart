@@ -2,11 +2,37 @@ import 'dart:async';
 import './timermodel.dart';
 
 class CountDownTimer {
+  int work = 30;
+  int shortBreak = 5;
+  int longBreak = 20;
+
   double _radius = 1;
   bool _isActive = true;
   late Timer timer;
   late Duration _time;
   late Duration _fullTime;
+
+  void startWork() {
+    _radius = 1;
+    _time = Duration(minutes: work, seconds: 0);
+    _fullTime = _time;
+  }
+
+  void startBreak(bool isShort) {
+    _radius = 1;
+    _time = Duration(minutes: (isShort) ? shortBreak : longBreak, seconds: 0);
+    _fullTime = _time;
+  }
+
+  void startTimer() {
+    if (_time.inSeconds > 0) {
+      _isActive = true;
+    }
+  }
+
+  void stopTimer() {
+    _isActive = false;
+  }
 
   String returnTime(Duration t) {
     String minutes =
