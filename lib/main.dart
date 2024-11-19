@@ -3,8 +3,14 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:productivity_timer/timermodel.dart';
 import 'package:productivity_timer/widgets.dart';
 import './timer.dart';
+import './settings.dart';
 
 void main() => runApp(const MyApp());
+
+void goToSettings(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,6 +30,13 @@ class TimerHomePage extends StatelessWidget {
   final double defaultPadding = 5.0;
   final CountDownTimer timer = CountDownTimer();
 
+  final List<PopupMenuItem<String>> menuItems = [
+    const PopupMenuItem(
+      value: 'Settings',
+      child: Text('Settings'),
+    ),
+  ];
+
   TimerHomePage({super.key});
 
   @override
@@ -33,6 +46,18 @@ class TimerHomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('My Work Timer'),
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return menuItems.toList();
+              },
+              onSelected: (value) {
+                if (value == 'Settings') {
+                  goToSettings(context);
+                }
+              },
+            )
+          ],
         ),
         body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
