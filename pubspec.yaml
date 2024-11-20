@@ -39,6 +39,10 @@ dependencies:
   # The following adds the capabilities of adding pre-made widget for percent indicator.
   percent_indicator: ^4.0.1
 
+# The following simplifies platform-specific storage for small data, using NSUserDefaults on iOS/macOS and SharedPreferences on Android.
+# It saves data asynchronously, so it’s not guaranteed to be immediately stored on disk and shouldn’t be used for critical data.
+  shared_preferences: ^2.3.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
